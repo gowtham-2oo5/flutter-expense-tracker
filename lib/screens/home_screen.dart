@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/login_screen.dart';
+import 'package:main_project/screens/login_screen.dart';
 
 
 class OnboardingPageModel {
@@ -20,7 +20,7 @@ class OnboardingPageModel {
 class OnboardingPage extends StatefulWidget {
   final List<OnboardingPageModel> pages;
 
-  const OnboardingPage({Key? key, required this.pages}) : super(key: key);
+  const OnboardingPage({super.key, required this.pages});
 
   @override
   _OnboardingPageState createState() => _OnboardingPageState();
@@ -53,7 +53,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     });
                   },
                   itemBuilder: (context, idx) {
-                    final _item = widget.pages[idx];
+                    final item = widget.pages[idx];
                     return Column(
                       children: [
                         Expanded(
@@ -61,7 +61,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           child: Padding(
                             padding: const EdgeInsets.all(32.0),
                             child: Image.asset(
-                              _item.image,
+                              item.image,
                             ),
                           ),
                         ),
@@ -70,26 +70,26 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             child: Column(children: [
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
-                                child: Text(_item.title,
+                                child: Text(item.title,
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineMedium
                                         ?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color: _item.textColor,
+                                      color: item.textColor,
                                     )),
                               ),
                               Container(
-                                constraints: BoxConstraints(maxWidth: 280),
+                                constraints: const BoxConstraints(maxWidth: 280),
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 24.0, vertical: 8.0),
-                                child: Text(_item.description,
+                                child: Text(item.description,
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
                                         ?.copyWith(
-                                      color: _item.textColor,
+                                      color: item.textColor,
                                     )),
                               )
                             ]))
@@ -127,7 +127,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         onPressed: () {
                           // Handle Skipping onboarding page
                         },
-                        child: Text(
+                        child: const Text(
                           "Skip",
                           style: TextStyle(color: Colors.white),
                         )),
@@ -136,7 +136,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         if (_currentPage == widget.pages.length - 1) {
                           // This is the last page
                           Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => LoginScreen()),
+                            MaterialPageRoute(builder: (context) => const LoginScreen()),
                           );                        } else {
                           _pageController.animateToPage(_currentPage + 1,
                               curve: Curves.easeInOutCubic,

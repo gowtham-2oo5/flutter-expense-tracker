@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:main_project/screens/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,29 +14,29 @@ class LoginScreen extends StatelessWidget {
         body: Center(
             child: isSmallScreen
                 ? const Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _Logo(),
-                _FormContent(),
-              ],
-            )
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _Logo(),
+                      _FormContent(),
+                    ],
+                  )
                 : Container(
-              padding: const EdgeInsets.all(32.0),
-              constraints: const BoxConstraints(maxWidth: 800),
-              child: const Row(
-                children: const [
-                  Expanded(child: _Logo()),
-                  Expanded(
-                    child: Center(child: _FormContent()),
-                  ),
-                ],
-              ),
-            )));
+                    padding: const EdgeInsets.all(32.0),
+                    constraints: const BoxConstraints(maxWidth: 800),
+                    child: const Row(
+                      children: [
+                        Expanded(child: _Logo()),
+                        Expanded(
+                          child: Center(child: _FormContent()),
+                        ),
+                      ],
+                    ),
+                  )));
   }
 }
 
 class _Logo extends StatelessWidget {
-  const _Logo({Key? key}) : super(key: key);
+  const _Logo();
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +54,9 @@ class _Logo extends StatelessWidget {
             style: isSmallScreen
                 ? Theme.of(context).textTheme.headlineSmall
                 : Theme.of(context)
-                .textTheme
-                .headlineMedium
-                ?.copyWith(color: Colors.black),
+                    .textTheme
+                    .headlineMedium
+                    ?.copyWith(color: Colors.black),
           ),
         )
       ],
@@ -62,7 +65,7 @@ class _Logo extends StatelessWidget {
 }
 
 class _FormContent extends StatefulWidget {
-  const _FormContent({Key? key}) : super(key: key);
+  const _FormContent();
 
   @override
   State<_FormContent> createState() => __FormContentState();
@@ -92,7 +95,7 @@ class __FormContentState extends State<_FormContent> {
                 }
 
                 bool emailValid = RegExp(
-                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                     .hasMatch(value);
                 if (!emailValid) {
                   return 'Please enter a valid email';
@@ -172,6 +175,19 @@ class __FormContentState extends State<_FormContent> {
                 },
               ),
             ),
+            _gap(),
+            const SizedBox(
+              width: double.infinity,
+              child: Row(
+                children: [
+                  Text("New to app? "),
+                  InkWell(
+                    child: Text("Create account here"),
+                    //onTap: () =>("Tapped on Link"),
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
